@@ -25,6 +25,7 @@ jobs:
         python3 -m pip install build --user
     - name: Build a binary wheel and a source tarball
       run: python3 -m build
+      working-directory: pyjsonparser
     - name: Store the distribution packages
       uses: actions/upload-artifact@v4
       with:
@@ -43,8 +44,10 @@ jobs:
         python-version: "3.x"
     - name: Install dependencies
       run: pip install -e ".[test]"
+      working-directory: pyjsonparser
     - name: Run tests
       run: pytest
+      working-directory: pyjsonparser
 
   publish-to-pypi:
     name: Publish Python 🐍 distribution 📦 to PyPI
