@@ -43,7 +43,7 @@ jobs:
       with:
         python-version: "3.x"
     - name: Install dependencies
-      run: pip install -e ".[test]"
+      run: pip install pytest
       working-directory: pyjsonparser
     - name: Run tests
       run: pytest
