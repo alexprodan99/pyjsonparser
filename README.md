@@ -1,5 +1,7 @@
 # pyjsonparser
 
+[![Documentation](https://img.shields.io/badge/docs-online-blue.svg)](https://alexprodan99.github.io/pyjsonparser/)
+
 A custom JSON parser implementation written in Python, featuring a lexer-parser architecture for robust JSON parsing and serialization.
 
 ## Overview
@@ -58,7 +60,9 @@ json_string = parser.to_string({"name": "John", "age": 30})
 
 ## Documentation
 
-Full documentation is available in the [`docs/`](docs/) directory:
+The full documentation is hosted online at **[alexprodan99.github.io/pyjsonparser](https://alexprodan99.github.io/pyjsonparser/)**.
+
+You can also browse the documentation source files directly in the [`docs/`](docs/) directory:
 
 - [Getting Started](docs/getting-started.md)
 - [Architecture & Design](docs/architecture.md)

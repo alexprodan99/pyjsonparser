@@ -13,7 +13,7 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/alexprodan99/pyjsonparser"
 Repository = "https://github.com/alexprodan99/pyjsonparser"
-Documentation = "https://github.com/alexprodan99/pyjsonparser/tree/main/docs"
+Documentation = "https://alexprodan99.github.io/pyjsonparser/"
 
 [tool.poetry]
 packages = [{include = "pyjson", from = "src"}]
