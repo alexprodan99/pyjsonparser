@@ -33,6 +33,9 @@ class Parser(ParserContract):
         """
         json_array = []
 
+        if not tokens:
+            raise Exception('Expected end-of-array bracket')
+
         # Check for immediate empty array: `[]`
         token = tokens[0]
         if token == JSON_RIGHTBRACKET:
@@ -43,6 +46,10 @@ class Parser(ParserContract):
             # Parse the next element in the array
             json, tokens = self.parse(tokens)
             json_array.append(json)
+
+            # Ensure there is a following delimiter token
+            if not len(tokens):
+                raise Exception('Expected end-of-array bracket')
 
             # Check next delimiter after the element
             token = tokens[0]
@@ -75,6 +82,9 @@ class Parser(ParserContract):
         """
         json_object = {}
 
+        if not tokens:
+            raise Exception('Expected end-of-object brace')
+
         # Check for immediate empty object: `{}`
         token = tokens[0]
         if token == JSON_RIGHTBRACE:
@@ -91,15 +101,19 @@ class Parser(ParserContract):
                     'Expected string key, got: {}'.format(json_key))
 
             # 2. Validate colon delimiter after key
-            if tokens[0] != JSON_COLON:
+            if not len(tokens) or tokens[0] != JSON_COLON:
+                got = tokens[0] if len(tokens) else 'EOF'
                 raise Exception(
-                    'Expected colon after key in object, got: {}'.format(tokens[0]))
+                    'Expected colon after key in object, got: {}'.format(got))
 
             # 3. Recursively parse the associated value (after colon)
             json_value, tokens = self.parse(tokens[1:])
             json_object[json_key] = json_value
 
             # 4. Check delimiter after value: must be closing `}` or comma `,`
+            if not len(tokens):
+                raise Exception('Expected end-of-object brace')
+
             token = tokens[0]
             if token == JSON_RIGHTBRACE:
                 # Object completed

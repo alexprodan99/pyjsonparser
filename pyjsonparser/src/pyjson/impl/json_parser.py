@@ -44,7 +44,7 @@ class JsonParser(JsonParserContract):
         """Serializes a Python object into its JSON string representation.
 
         Supports nested dictionaries, lists, strings, booleans, None (null),
-        and numeric values (int, float).
+        and numeric values (int, float). Handles empty dictionaries and empty lists properly.
 
         Args:
             json: The Python object to serialize.
@@ -56,35 +56,11 @@ class JsonParser(JsonParserContract):
 
         # Handle dictionaries -> JSON Objects {"key": value}
         if json_type is dict:
-            string = '{'
-            dict_len = len(json)
-
-            for i, (key, val) in enumerate(json.items()):
-                # Recursively format nested values
-                string += '"{}": {}'.format(key, self.to_string(val))
-
-                if i < dict_len - 1:
-                    string += ', '
-                else:
-                    string += '}'
-
-            return string
+            return '{' + ', '.join('"{}": {}'.format(key, self.to_string(val)) for key, val in json.items()) + '}'
 
         # Handle lists -> JSON Arrays [item1, item2]
         elif json_type is list:
-            string = '['
-            list_len = len(json)
-
-            for i, val in enumerate(json):
-                # Recursively format array items
-                string += self.to_string(val)
-
-                if i < list_len - 1:
-                    string += ', '
-                else:
-                    string += ']'
-
-            return string
+            return '[' + ', '.join(self.to_string(val) for val in json) + ']'
 
         # Handle strings -> quoted JSON strings
         elif json_type is str:
@@ -95,7 +71,7 @@ class JsonParser(JsonParserContract):
             return 'true' if json else 'false'
 
         # Handle None -> null
-        elif json_type is None:
+        elif json is None:
             return 'null'
 
         # Fallback for numbers (int, float) and other types

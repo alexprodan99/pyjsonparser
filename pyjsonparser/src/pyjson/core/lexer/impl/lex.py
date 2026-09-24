@@ -61,7 +61,7 @@ class Lexer(LexContract):
                 Returns (None, string) if no digits or leading minus are found.
         """
         json_number = ''
-        number_characters = {str(i) for i in range(10)} | {'e', '.', '-'}
+        number_characters = {str(i) for i in range(10)} | {'e', 'E', '.', '-', '+'}
 
         # Greedily accumulate valid numeric characters
         for char in string:
@@ -74,10 +74,13 @@ class Lexer(LexContract):
         if not len(json_number):
             return None, string
 
-        # Cast to float if decimal point is present; otherwise cast to int
-        if '.' in json_number:
-            return float(json_number), rest
-        return int(json_number), rest
+        # Safely convert to float or int; return None if malformed (e.g. lone '-')
+        try:
+            if '.' in json_number or 'e' in json_number.lower():
+                return float(json_number), rest
+            return int(json_number), rest
+        except ValueError:
+            return None, string
 
     def lex_bool(self, string: str) -> Tuple[bool, str]:
         """Extracts a boolean literal ('true' or 'false') from the input.
