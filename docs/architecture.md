@@ -10,15 +10,15 @@ The following diagram illustrates how raw JSON text is transformed into Python o
 
 ```mermaid
 flowchart TD
-    subgraph Deserialization ["Deserialization (from_string)"]
-        Raw["Raw JSON String"] --> Lexer["Lexer (LexContract)"]
-        Lexer -->|"Tokens List (strings, numbers, delimiters)"| Parser["Parser (ParserContract)"]
-        Parser -->|"AST / Python Object"| PythonObj["Python Object (dict, list, etc.)"]
+    subgraph Deserialization ["Deserialization: from_string"]
+        Raw["Raw JSON String"] --> Lexer["Lexer: LexContract"]
+        Lexer -->|"Token Stream"| Parser["Parser: ParserContract"]
+        Parser -->|"Parsed Structure"| PythonObj["Python Object: dict, list, primitive"]
     end
 
-    subgraph Serialization ["Serialization (to_string)"]
-        PythonInput["Python Object"] --> Serializer["JsonParser.to_string()"]
-        Serializer -->|"Formatted String"| OutputJSON["Valid JSON String"]
+    subgraph Serialization ["Serialization: to_string"]
+        PythonInput["Python Object"] --> Serializer["JsonParser.to_string"]
+        Serializer -->|"Formatted JSON"| OutputJSON["Valid JSON String"]
     end
 ```
 
@@ -70,13 +70,13 @@ The `Lexer` scans through the character stream from left to right, matching toke
 
 ```mermaid
 flowchart LR
-    A["Raw String"] --> B{"Check Type"}
-    B -->|"Quote (\")"| C["lex_string() -> str"]
-    B -->|"Digit / - / ."| D["lex_number() -> int / float"]
-    B -->|"'true' / 'false'"| E["lex_bool() -> bool"]
-    B -->|"'null'"| F["lex_null() -> None"]
-    B -->|"Whitespace"| G["Skip whitespace"]
-    B -->|"Syntax: { } [ ] : ,"| H["Append delimiter"]
+    A["Raw String"] --> B{"Check Next Character"}
+    B -->|"Double quote"| C["lex_string: string token"]
+    B -->|"Digit or minus"| D["lex_number: int or float token"]
+    B -->|"true or false literal"| E["lex_bool: boolean token"]
+    B -->|"null literal"| F["lex_null: None token"]
+    B -->|"Whitespace char"| G["Skip character"]
+    B -->|"Structural delimiter"| H["Append delimiter token"]
 ```
 
 ### Lexer Rules

@@ -72,6 +72,10 @@ dataset = {
 json_output = parser.to_string(dataset)
 print(json_output)
 # {"server": "us-east-1", "ports": [80, 443, 8080], "ssl_enabled": true, "maintenance": null}
+
+# Round-trip verification: deserialize back to Python
+restored_dataset = parser.from_string(json_output)
+assert restored_dataset == dataset
 ```
 
 ---
