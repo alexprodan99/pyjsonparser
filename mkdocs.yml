@@ -1,4 +1,5 @@
 site_name: pyjsonparser
+site_url: https://alexprodan99.github.io/pyjsonparser/
 site_description: A modular JSON parser and serializer written in Python
 site_author: Ionut-Alexandru Prodan
 repo_url: https://github.com/alexprodan99/pyjsonparser
