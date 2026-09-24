@@ -56,6 +56,16 @@ json_string = parser.to_string({"name": "John", "age": 30})
 # Result: '{"name": "John", "age": 30}'
 ```
 
+## Documentation
+
+Full documentation is available in the [`docs/`](docs/) directory:
+
+- [Getting Started](docs/getting-started.md)
+- [Architecture & Design](docs/architecture.md)
+- [API Reference](docs/api-reference.md)
+- [Usage Examples & Recipes](docs/examples.md)
+- [Contributing & Development Guide](docs/contributing.md)
+
 ## Project Structure
 
 ```

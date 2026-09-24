@@ -1,5 +1,5 @@
-from src.pyjson.abstract import JsonParserContract
-from src.pyjson.core import Lexer, Parser
+from pyjson.abstract import JsonParserContract
+from pyjson.core import Lexer, Parser
 
 
 class JsonParser(JsonParserContract):

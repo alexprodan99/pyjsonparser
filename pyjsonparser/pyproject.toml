@@ -1,7 +1,7 @@
 [project]
 name = "pyjsonparser"
 version = "0.1.0"
-description = ""
+description = "A modular JSON parser and serializer written in Python with a lexer-parser architecture"
 authors = [
     {name = "Ionut-Alexandru Prodan",email = "prodanalexandru1999@gmail.com"}
 ]
@@ -9,6 +9,11 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
 ]
+
+[project.urls]
+Homepage = "https://github.com/alexprodan99/pyjsonparser"
+Repository = "https://github.com/alexprodan99/pyjsonparser"
+Documentation = "https://github.com/alexprodan99/pyjsonparser/tree/main/docs"
 
 [tool.poetry]
 packages = [{include = "pyjson", from = "src"}]

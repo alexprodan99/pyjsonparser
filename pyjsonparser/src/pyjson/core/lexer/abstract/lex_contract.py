@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List, Tuple, Union
-from src.pyjson.core.shared.constants import *
+from pyjson.core.shared.constants import *
 
 
 class LexContract(ABC):

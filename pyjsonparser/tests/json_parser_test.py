@@ -1,6 +1,6 @@
-from src.pyjson import JsonParser
-from src.pyjson.core.lexer.impl.lex import Lexer
-from src.pyjson.core.parser.impl.parser import Parser
+from pyjson import JsonParser
+from pyjson.core.lexer.impl.lex import Lexer
+from pyjson.core.parser.impl.parser import Parser
 
 
 def test_empty_object():

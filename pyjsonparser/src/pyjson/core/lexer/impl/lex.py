@@ -1,6 +1,6 @@
 from typing import Tuple, Union
-from src.pyjson.core.lexer.abstract.lex_contract import LexContract
-from src.pyjson.core.shared.constants import *
+from pyjson.core.lexer.abstract.lex_contract import LexContract
+from pyjson.core.shared.constants import *
 
 
 class Lexer(LexContract):

@@ -1,6 +1,6 @@
 from typing import List, Tuple
-from src.pyjson.core.shared.constants import *
-from src.pyjson.core.parser.abstract.parser_contract import ParserContract
+from pyjson.core.shared.constants import *
+from pyjson.core.parser.abstract.parser_contract import ParserContract
 
 
 class Parser(ParserContract):

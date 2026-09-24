@@ -1,4 +1,4 @@
-from src.pyjson.impl import JsonParser
+from pyjson.impl import JsonParser
 
 __all__ = ["JsonParser"]
 
